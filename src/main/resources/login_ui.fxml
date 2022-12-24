@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="600.0" text="Login" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.software.traceability.ui.gui.controllers.graphics.LoginUiController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="label_email" layoutX="130.0" layoutY="59.0" prefHeight="28.0" prefWidth="83.0" text="Email">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_password" layoutX="130.0" layoutY="114.0" text="Password">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txt_password" layoutX="247.0" layoutY="116.0" prefHeight="25.0" prefWidth="237.0" />
+            <TextField fx:id="txt_email" layoutX="247.0" layoutY="61.0" prefHeight="25.0" prefWidth="236.0" />
+            <Button fx:id="btn_login" layoutX="120.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="127.0" text="Login" />
+            <Button fx:id="btn_createUser" layoutX="356.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleButtonCreateUser" prefHeight="25.0" prefWidth="141.0" text="Create user" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>

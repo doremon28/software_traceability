@@ -1,12 +1,12 @@
 package tp.software.traceability;
 
-import org.springframework.boot.SpringApplication;
+import javafx.application.Application;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SoftwareTraceabilityApplication {
+public class BountifulFxApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SoftwareTraceabilityApplication.class, args);
+        Application.launch(JavafxApplication.class, args);
     }
 
 }

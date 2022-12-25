@@ -25,4 +25,6 @@ public class ProductEntity implements Serializable {
     private double price;
 
     private Date expirationDate;
+
+    private UserEntity user;
 }

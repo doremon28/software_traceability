@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +24,5 @@ public class UserEntity implements Serializable {
     private int age;
     private String email;
     private String password;
+    private List<ProductEntity> products;
 }

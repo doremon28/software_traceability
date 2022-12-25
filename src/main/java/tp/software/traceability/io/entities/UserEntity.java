@@ -24,5 +24,4 @@ public class UserEntity implements Serializable {
     private int age;
     private String email;
     private String password;
-    private List<ProductEntity> products;
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,4 +17,6 @@ public class UserDto implements Serializable {
     private int age;
     private String email;
     private String password;
+
+    private List<ProductDto> products;
 }

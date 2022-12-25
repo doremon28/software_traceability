@@ -17,5 +17,4 @@ public class ProductDto implements Serializable {
     private String name;
     private double price;
     private Date expirationDate;
-    private UserDto user;
 }

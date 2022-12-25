@@ -22,6 +22,10 @@ public class GenerateUtils {
         return generateRandomLong(length);
     }
 
+    public Long generateNumericProductId(int length) {
+        return generateRandomLong(length);
+    }
+
     private String generateRandomString(int length) {
         StringBuilder returnValue = new StringBuilder();
 

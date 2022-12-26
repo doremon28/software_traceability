@@ -10,6 +10,8 @@ import tp.software.traceability.ui.gui.controllers.ProductController;
 import tp.software.traceability.ui.models.requests.ProductRequest;
 import tp.software.traceability.ui.models.responses.ProductResponse;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductControllerImpl implements ProductController {
@@ -36,5 +38,13 @@ public class ProductControllerImpl implements ProductController {
     @Override
     public void deleteProduct(Long idProduct) {
         productService.deleteProduct(idProduct);
+    }
+
+    @Override
+    public List<ProductResponse> getAllProducts() {
+        ModelMapper modelMapper = new ModelMapper();
+        return productService.getAllProducts()
+                .stream()
+                .map(productDto -> modelMapper.map(productDto, ProductResponse.class)).toList();
     }
 }

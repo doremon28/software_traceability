@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="428.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp.software.traceability.ui.gui.controllers.graphics.ProductUiController">
+    <children>
+        <TabPane layoutX="-2.0" prefHeight="460.0" prefWidth="708.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Products">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="table_product" prefHeight="430.0" prefWidth="706.0">
+                                    <columns>
+                                        <TableColumn fx:id="columnNom" prefWidth="193.0" text="Nom" />
+                                        <TableColumn fx:id="columnPrice" prefWidth="131.0" text="Price" />
+                                        <TableColumn fx:id="columnDate" prefWidth="215.0" text="Date D'expiration" />
+                                        <TableColumn fx:id="columnId" prefWidth="165.0" text="Id" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Ajouter Produit">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="503.0" prefWidth="695.0">
+                            <children>
+                                <Label layoutX="198.0" layoutY="25.0" text="Ajouter un nouveau produit" textAlignment="CENTER">
+                                    <font>
+                                        <Font name="System Bold" size="27.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="126.0" layoutY="121.0" prefHeight="32.0" prefWidth="150.0" text="Nom " textAlignment="CENTER">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="126.0" layoutY="168.0" prefHeight="32.0" prefWidth="151.0" text="Prix " textAlignment="CENTER">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="126.0" layoutY="221.0" text="Date d'expiration" textAlignment="CENTER">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txt_nom" layoutX="309.0" layoutY="125.0" />
+                                <TextField fx:id="txt_prix" layoutX="309.0" layoutY="172.0" />
+                                <DatePicker fx:id="txt_date" layoutX="309.0" layoutY="225.0" prefHeight="25.0" prefWidth="174.0" />
+                                <Button fx:id="btn_addProduct" layoutX="252.0" layoutY="334.0" mnemonicParsing="false" onAction="#onHandleAddNewProduct" prefHeight="35.0" prefWidth="224.0" text="Ajouter nouveau produit" textFill="#1b1a1a">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Operation Produit">
+                    <content>
+                        <AnchorPane>
+                     <children>
+                        <Label layoutX="45.0" layoutY="66.0" text="Id">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Label layoutX="45.0" layoutY="107.0" text="Nom">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Label layoutX="45.0" layoutY="153.0" text="Prix">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Label layoutX="45.0" layoutY="206.0" text="Date d'estimation">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <TextField fx:id="txt_op_id" layoutX="127.0" layoutY="69.0" />
+                        <TextField fx:id="txt_op_nom" disable="true" layoutX="127.0" layoutY="110.0" />
+                        <TextField fx:id="txt_op_price" disable="true" layoutX="127.0" layoutY="156.0" />
+                        <DatePicker fx:id="txt_op_date" disable="true" layoutX="215.0" layoutY="209.0" />
+                        <Button fx:id="btn_search" layoutX="476.0" layoutY="69.0" mnemonicParsing="false" onAction="#onBtnSearchHandler" text="Chercher Produit" />
+                        <Button fx:id="btn_delete" disable="true" layoutX="472.0" layoutY="141.0" mnemonicParsing="false" onAction="#onBtnDeleteHandler" text="Supprimer Produit" />
+                        <Button fx:id="btn_update" disable="true" layoutX="470.0" layoutY="197.0" mnemonicParsing="false" onAction="#onBtnUpdateHandler" prefHeight="25.0" prefWidth="120.0" text="Modifier Produit" />
+                        <RadioButton fx:id="radio_update" layoutX="62.0" layoutY="286.0" mnemonicParsing="false" onAction="#onUpdateActivation" text="Activer la modification" />
+                        <RadioButton fx:id="radio_delete" layoutX="64.0" layoutY="332.0" mnemonicParsing="false" onAction="#onDeleteActivation" text="Activer la suppression" />
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

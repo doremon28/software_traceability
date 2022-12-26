@@ -57,10 +57,10 @@ public class UserServiceImpl implements UserService {
             throw new UserServiceException("User not found");
         });
         if (userToFound.getPassword().equals(password)) {
-            LOGGER.info("User authenticated");
+            LOGGER.info("User {} authenticated", email);
             return true;
         } else {
-            LOGGER.error("User not authenticated");
+            LOGGER.error("User {} not authenticated", email);
             return false;
         }
     }

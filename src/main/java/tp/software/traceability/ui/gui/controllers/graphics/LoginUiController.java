@@ -2,24 +2,19 @@ package tp.software.traceability.ui.gui.controllers.graphics;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+import tp.software.traceability.exceptions.SwitchScreenException;
 import tp.software.traceability.exceptions.UserServiceException;
 import tp.software.traceability.ui.gui.controllers.UserController;
-
-import java.net.URL;
+import tp.software.traceability.ui.gui.controllers.graphics.utils.SwitchScreen;
 
 @Component
 public class LoginUiController {
@@ -28,7 +23,9 @@ public class LoginUiController {
 
     private final Resource createUserUiResource;
 
+    private final Resource productUiResource;
 
+    private final String productUiTitle;
     private final String createUserUiTitle;
 
     private final ApplicationContext applicationContext;
@@ -48,51 +45,55 @@ public class LoginUiController {
 
     public LoginUiController(UserController userController,
                              @Value("classpath:/create_user.fxml") Resource createUserUiResource,
-                             @Value("${spring.application.create_user_ui.title}") String createUserUiTitle, ApplicationContext applicationContext) {
+                             @Value("classpath:/product_ui.fxml") Resource productUiResource,
+                             @Value("${spring.application.ui.product.title}") String productUiTitle,
+                             @Value("${spring.application.create_user_ui.title}") String createUserUiTitle,
+                             ApplicationContext applicationContext) {
         this.userController = userController;
         this.createUserUiResource = createUserUiResource;
+        this.productUiResource = productUiResource;
+        this.productUiTitle = productUiTitle;
         this.createUserUiTitle = createUserUiTitle;
         this.applicationContext = applicationContext;
     }
 
     @FXML
-    public void handleButtonLogin() {
+    public void handleButtonLogin(ActionEvent event) {
         String success = "Login successful";
         String fail = "Login failed";
-        this.btn_login.setOnAction(event -> {
-            String email = this.txt_email.getText();
-            String password = this.txt_password.getText();
-            try {
-                if (this.userController.authenticateUser(email, password)) {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, success, ButtonType.CANCEL);
-                    alert.showAndWait();
-                    LOGGER.info("User authenticated");
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, fail, ButtonType.CANCEL);
-                    alert.showAndWait();
-                    LOGGER.error("User not authenticated");
-                }
-            }catch(UserServiceException e){
-                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CANCEL);
+        String email = this.txt_email.getText();
+        String password = this.txt_password.getText();
+        try {
+            if (this.userController.authenticateUser(email, password)) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, success, ButtonType.CANCEL);
                 alert.showAndWait();
-                LOGGER.error("User not authenticated");
+                switchScreen(event, this.applicationContext,this.productUiResource, this.productUiTitle);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, fail, ButtonType.CANCEL);
+                alert.showAndWait();
             }
-        });
+        } catch (UserServiceException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+
+    }
+
+    private void switchScreen(ActionEvent event, ApplicationContext applicationContext, Resource resource, String title) {
+        try {
+            SwitchScreen switchScreen = SwitchScreen.builder()
+                    .applicationContext(applicationContext)
+                    .resource(resource)
+                    .title(title)
+                    .build();
+            switchScreen.switchScreen(event);
+        } catch (SwitchScreenException e) {
+            LOGGER.error("Error while switching to product ui", e);
+        }
     }
 
     @FXML
     public void handleButtonCreateUser(ActionEvent event) {
-            try {
-                URL url = this.createUserUiResource.getURL();
-                FXMLLoader fxmlLoader = new FXMLLoader(url);
-                fxmlLoader.setControllerFactory(this.applicationContext::getBean);
-                Parent root = fxmlLoader.load();
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setTitle(this.createUserUiTitle);
-                stage.setScene(new Scene(root, 600, 400));
-                stage.show();
-            } catch (Exception e) {
-                LOGGER.error("Error loading create user UI", e);
-            }
+        switchScreen(event, this.applicationContext,this.createUserUiResource, this.createUserUiTitle);
     }
 }

@@ -11,6 +11,7 @@ import tp.software.traceability.ui.models.requests.ProductRequest;
 import tp.software.traceability.ui.models.responses.ProductResponse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -45,6 +46,7 @@ public class ProductControllerImpl implements ProductController {
         ModelMapper modelMapper = new ModelMapper();
         return productService.getAllProducts()
                 .stream()
-                .map(productDto -> modelMapper.map(productDto, ProductResponse.class)).toList();
+                .map(productDto -> modelMapper.map(productDto, ProductResponse.class))
+                .collect(Collectors.toList());
     }
 }

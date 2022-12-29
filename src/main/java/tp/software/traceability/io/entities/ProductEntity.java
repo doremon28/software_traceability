@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,7 +13,6 @@ import java.util.Date;
 @Document(collection = "products")
 public class ProductEntity implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = -215182597052086112L;
 
     @Id

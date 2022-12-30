@@ -133,11 +133,11 @@ public class ProductUiController implements Initializable {
                 }
             }
         } catch (ProductServiceException e) {
-            LOGGER.error("Error while adding new product", e);
+            LOGGER.error("Error while adding new product : {} ", e.getMessage());
             Alert alert = new Alert(Alert.AlertType.INFORMATION, e.getMessage(), ButtonType.OK);
             alert.showAndWait();
         } catch (ParseException e) {
-            LOGGER.error("Error while parsing date", e);
+            LOGGER.error("Error while parsing date {} :", e.getMessage());
         }
     }
 
@@ -189,7 +189,7 @@ public class ProductUiController implements Initializable {
             }
 
         } catch (ProductServiceException e) {
-            LOGGER.error("Error while searching product", e);
+            LOGGER.error("Error while searching product : {}", e.getMessage());
             Alert alert = new Alert(Alert.AlertType.INFORMATION, e.getMessage(), ButtonType.OK);
             alert.showAndWait();
         }
@@ -248,7 +248,7 @@ public class ProductUiController implements Initializable {
             clearFields();
             loadProducts();
         } catch (ProductServiceException e) {
-            LOGGER.error("Error while deleting product", e);
+            LOGGER.error("Error while deleting product : {}", e.getMessage());
             Alert alert = new Alert(Alert.AlertType.INFORMATION, e.getMessage(), ButtonType.OK);
             alert.showAndWait();
         }
@@ -289,11 +289,11 @@ public class ProductUiController implements Initializable {
                 }
             }
         } catch (ProductServiceException e) {
-            LOGGER.error("Error while updating product", e);
+            LOGGER.error("Error while updating product : {}", e.getMessage());
             Alert alert = new Alert(Alert.AlertType.INFORMATION, e.getMessage(), ButtonType.OK);
             alert.showAndWait();
         } catch (ParseException e) {
-            LOGGER.error("Error while parsing date", e);
+            LOGGER.error("Error while parsing date : {} ", e.getMessage());
         }
     }
 }

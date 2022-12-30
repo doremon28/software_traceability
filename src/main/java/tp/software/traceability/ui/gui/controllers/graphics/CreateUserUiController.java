@@ -78,6 +78,7 @@ public class CreateUserUiController {
             alert.showAndWait();
         } catch (UserServiceException userServiceException) {
             Alert alert = new Alert(Alert.AlertType.ERROR, userServiceException.getMessage(), ButtonType.CANCEL);
+            LOGGER.error("Error creating user : {}", userServiceException.getMessage());
             alert.showAndWait();
         }
     }

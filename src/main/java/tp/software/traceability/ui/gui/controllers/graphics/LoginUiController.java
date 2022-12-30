@@ -74,6 +74,7 @@ public class LoginUiController {
             }
         } catch (UserServiceException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CANCEL);
+            LOGGER.error("Error while authenticating user : {}", e.getMessage());
             alert.showAndWait();
         }
 

@@ -2,7 +2,7 @@ package tp.software.traceability.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.slf4j.MDC;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tp.software.traceability.exceptions.UserServiceException;
@@ -15,12 +15,14 @@ import tp.software.traceability.shared.utils.GenerateUtils;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements UserService {
+    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final GenerateUtils generateUtils;
 
     @Override
     public UserDto createUser(UserDto user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            logger.error("User already exists");
             throw new UserServiceException("Record already exists");
         }
         ModelMapper modelMapper = new ModelMapper();
@@ -29,8 +31,10 @@ public class UserServiceImpl implements UserService {
         UserEntity savedUser = userRepository.save(userToSave);
         UserDto returnValue = modelMapper.map(savedUser, UserDto.class);
         if (returnValue == null) {
+            logger.error("User not created");
             throw new UserServiceException("User not saved");
         }
+        logger.info("User created");
         return returnValue;
     }
 
@@ -38,19 +42,24 @@ public class UserServiceImpl implements UserService {
     public UserDto getUser(String email) {
         ModelMapper modelMapper = new ModelMapper();
         UserEntity userFound = userRepository.findByEmail(email).orElseThrow(() -> {
+            logger.error("User not found");
             throw new UserServiceException("User not found");
         });
+        logger.info("Getting user by email: {}", email);
         return modelMapper.map(userFound, UserDto.class);
     }
 
     @Override
     public boolean authenticateUser(String email, String password) {
         UserEntity userToFound = userRepository.findByEmail(email).orElseThrow(() -> {
+            logger.error("User not found");
             throw new UserServiceException("User not found");
         });
         if (userToFound.getPassword().equals(password)) {
+            logger.info("User authenticated");
             return true;
         } else {
+            logger.error("Wrong password or email");
             throw new UserServiceException("Authentication failed");
         }
     }

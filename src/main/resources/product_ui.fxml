@@ -63,33 +63,61 @@
                 <Tab text="Operation Produit">
                     <content>
                         <AnchorPane>
-                     <children>
-                        <Label layoutX="45.0" layoutY="66.0" text="Id">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Label>
-                        <Label layoutX="45.0" layoutY="107.0" text="Nom">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Label>
-                        <Label layoutX="45.0" layoutY="153.0" text="Prix">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Label>
-                        <Label layoutX="45.0" layoutY="206.0" text="Date d'estimation">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Label>
-                        <TextField fx:id="txt_op_id" layoutX="127.0" layoutY="69.0" />
-                        <TextField fx:id="txt_op_nom" disable="true" layoutX="127.0" layoutY="110.0" />
-                        <TextField fx:id="txt_op_price" disable="true" layoutX="127.0" layoutY="156.0" />
-                        <DatePicker fx:id="txt_op_date" disable="true" layoutX="215.0" layoutY="209.0" />
-                        <Button fx:id="btn_search" layoutX="476.0" layoutY="69.0" mnemonicParsing="false" onAction="#onBtnSearchHandler" text="Chercher Produit" />
-                        <Button fx:id="btn_delete" disable="true" layoutX="472.0" layoutY="141.0" mnemonicParsing="false" onAction="#onBtnDeleteHandler" text="Supprimer Produit" />
-                        <Button fx:id="btn_update" disable="true" layoutX="470.0" layoutY="197.0" mnemonicParsing="false" onAction="#onBtnUpdateHandler" prefHeight="25.0" prefWidth="120.0" text="Modifier Produit" />
-                        <RadioButton fx:id="radio_update" layoutX="62.0" layoutY="286.0" mnemonicParsing="false" onAction="#onUpdateActivation" text="Activer la modification" />
-                        <RadioButton fx:id="radio_delete" layoutX="64.0" layoutY="332.0" mnemonicParsing="false" onAction="#onDeleteActivation" text="Activer la suppression" />
-                     </children></AnchorPane>
+                            <children>
+                                <Label layoutX="45.0" layoutY="66.0" text="Id">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <Label layoutX="45.0" layoutY="107.0" text="Nom">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <Label layoutX="45.0" layoutY="153.0" text="Prix">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <Label layoutX="45.0" layoutY="206.0" text="Date d'estimation">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <TextField fx:id="txt_op_id" layoutX="127.0" layoutY="69.0" />
+                                <TextField fx:id="txt_op_nom" disable="true" layoutX="127.0" layoutY="110.0" />
+                                <TextField fx:id="txt_op_price" disable="true" layoutX="127.0" layoutY="156.0" />
+                                <DatePicker fx:id="txt_op_date" disable="true" layoutX="215.0" layoutY="209.0" />
+                                <Button fx:id="btn_search" layoutX="476.0" layoutY="69.0" mnemonicParsing="false" onAction="#onBtnSearchHandler" text="Chercher Produit" />
+                                <Button fx:id="btn_delete" disable="true" layoutX="472.0" layoutY="141.0" mnemonicParsing="false" onAction="#onBtnDeleteHandler" text="Supprimer Produit" />
+                                <Button fx:id="btn_update" disable="true" layoutX="470.0" layoutY="197.0" mnemonicParsing="false" onAction="#onBtnUpdateHandler" prefHeight="25.0" prefWidth="120.0" text="Modifier Produit" />
+                                <RadioButton fx:id="radio_update" disable="true" layoutX="62.0" layoutY="286.0" mnemonicParsing="false" onAction="#onUpdateActivation" text="Activer la modification" />
+                                <RadioButton fx:id="radio_delete" disable="true" layoutX="64.0" layoutY="332.0" mnemonicParsing="false" onAction="#onDeleteActivation" text="Activer la suppression" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Consulter Produit">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label layoutX="45.0" layoutY="66.0" text="Id">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <Label layoutX="45.0" layoutY="107.0" text="Nom">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <Label layoutX="45.0" layoutY="153.0" text="Prix">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <Label layoutX="45.0" layoutY="206.0" text="Date d'estimation">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                                <TextField fx:id="txt_s_id" layoutX="127.0" layoutY="69.0" />
+                                <TextField fx:id="txt_s_nom" disable="true" layoutX="127.0" layoutY="110.0" />
+                                <TextField fx:id="txt_s_price" disable="true" layoutX="127.0" layoutY="156.0" />
+                                <DatePicker fx:id="txt_s_date" disable="true" layoutX="215.0" layoutY="209.0" />
+                                <Button fx:id="btn_s_search" layoutX="476.0" layoutY="69.0" mnemonicParsing="false" onAction="#onHandleConsulteProduct" text="Chercher Produit" />
+                            </children></AnchorPane>
                     </content>
                 </Tab>
             </tabs>
